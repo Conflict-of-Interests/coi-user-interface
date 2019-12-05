@@ -9,7 +9,7 @@ export default function AssociateDashboard(props) {
   const [feedback, setFeedback] = useState([]);
 
   useEffect(() => {
-    const id = 1;
+    const id = localStorage.getItem('user');
     async function getFeedback() {
       const data = await coiFeedbackClient.get(`/feedback/associates/${id}`);
       const feedback = data.data;
