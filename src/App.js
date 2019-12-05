@@ -9,7 +9,7 @@ import AssociateHome from './associate_home.js';
 import RevNav from './navbar.js';
 import Footer from './footer.js';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   const AssociatePage = (
