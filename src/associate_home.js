@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import {coiUserClient, coiFeedbackClient} from './axios-config';
 
 export default function AssociateHome(props) {
-  const [peers, updatePeers] = useState([
+  const [peers, setPeers] = useState([
     {
       id: 1,
       fname: 'Peer1A',
@@ -17,7 +18,7 @@ export default function AssociateHome(props) {
     }
   ]);
 
-  const [skills, updateSkills] = useState([
+  const [skills, setSkills] = useState([
     {
       id: 1,
       name: 'TestSkill1'
@@ -26,7 +27,22 @@ export default function AssociateHome(props) {
       id: 2,
       name: 'TestSkill2'
     }
-  ])
+  ]);
+
+  useEffect(() => {
+    async function getPeers() {
+      const data = await coiUserClient.get('/users');
+      setPeers(data);
+    }
+    async function getSkills() {
+      const data = await coiFeedbackClient.get('/skills');
+      const skillData = await data.json();
+      setSkills(skillData);
+    }
+    getPeers();
+    getSkills();
+  }, []);
+
   return (
     <div id="associate-home-container">
     <div>

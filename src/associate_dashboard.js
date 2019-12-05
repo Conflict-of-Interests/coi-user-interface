@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {FaPlusCircle,FaMinusCircle} from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
 
 export default function AssociateDashboard(props) {
-  const [fakeSkills] = useState([
+  const [feedback, setFeedback] = useState([
     {
       id: 1,
       name: "Communication",
@@ -19,6 +19,15 @@ export default function AssociateDashboard(props) {
     }
   ]);
 
+  useEffect(() => {
+    const id = 1;
+    async function getFeedback() {
+      const feedbackPromise = await fetch(`${process.env.REACT_APP_FEEDBACK_API_URL}/feedback/${id}`);
+      const feedbackData = await feedbackPromise.json();
+      setFeedback(feedbackData);
+    }
+  })
+
   return (
     <div>
       <h2>Feedback I have Received</h2>
@@ -31,7 +40,7 @@ export default function AssociateDashboard(props) {
           </tr>
         </thead>
         <tbody>
-          {fakeSkills.map(skill => {
+          {feedback.map(skill => {
             return (
               <tr key={skill.id}>
                 <td>{skill.name}</td>
