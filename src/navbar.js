@@ -5,7 +5,7 @@ import logo from './logo.svg';
 
 export default function RevNav(props) {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" id="app-nav">
       <Navbar.Brand href="#home">
         <img src={logo} width="50" height="50" className="App-logo" alt="logo" />
         RevNauts LaunchPad

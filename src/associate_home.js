@@ -28,7 +28,7 @@ export default function AssociateHome(props) {
     }
   ])
   return (
-    <>
+    <div id="associate-home-container">
     <div>
       <Link to="/associate-dashboard">My Performance Dashboard</Link>
     </div>
@@ -65,6 +65,6 @@ export default function AssociateHome(props) {
       </Form.Group>
       <Button variant="primary">Submit</Button>
     </div>
-    </>
+    </div>
   )
 }

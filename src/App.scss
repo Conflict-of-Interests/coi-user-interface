@@ -20,3 +20,27 @@
 .App-link {
   color: #09d3ac;
 }
+
+#main-app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  padding: 0.8em;
+}
+
+/************************************
+Nav
+************************************/
+#app-nav {
+  height: 4em;
+}
+
+/************************************
+Associate Home
+************************************/
+#associate-home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -12,27 +12,29 @@ import logo from './logo.svg';
 import './App.scss';
 
 function App() {
-  const AssociatePage = (
-    <>
-    <RevNav />
-    <AssociateHome />
-    <Footer />
-    </>
-  )
   return (
     <div className="App">
       <Router>
         <Switch>
+
           <Route exact path="/">
             <Login />
           </Route>
-          <Route path="/associate-home">
-            {AssociatePage }
-          </Route>
-          <Route path="/trainer-home">
-            {
-              // nothing for now
-            }
+          <Route>
+            <RevNav />
+            <div id="main-app-container">
+              <Switch>
+                <Route path="/associate-home" component={AssociateHome}>
+    
+                </Route>
+                <Route path="/trainer-home">
+                  {
+                    // nothing for now
+                  }
+                </Route>
+              </Switch>
+            </div>
+            <Footer />
           </Route>
         </Switch>
       </Router>
