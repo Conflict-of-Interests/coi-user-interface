@@ -7,7 +7,7 @@ export default function RevNav(props) {
   return (
     <Navbar bg="light" expand="lg" id="app-nav">
       <Navbar.Brand href="#home">
-        <img src={logo} width="50" height="50" className="App-logo" alt="logo" />
+        <img src={logo} className="App-logo" alt="logo" />
         RevNauts LaunchPad
       </Navbar.Brand>
       <Navbar.Collapse id="basic-navbar-nav">

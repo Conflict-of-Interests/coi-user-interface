@@ -35,15 +35,28 @@
   height: 4em;
   width: 100%;
   border-top: 1px solid lightgray;
-  vertical-align: middle;
-
+  padding-top: 1em;
+  background-color: #f8f9fa ;
  }
+
+.unstyled-link {
+  color: unset;
+  &:hover {
+    color: unset;
+    text-decoration: none;
+  }
+}
 
 /************************************
 Nav
 ************************************/
 #app-nav {
   height: 4em;
+  border-bottom: 1px solid lightgray;
+
+  img {
+    max-height: 2.2em;
+  }
 }
 
 /************************************
@@ -53,4 +66,32 @@ Associate Home
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+
+}
+
+#a-home-dashboard {
+  align-self: flex-end;
+}
+
+#a-home-form-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 1em;
+  align-items: flex-end;
+  .form-group {
+    margin: unset;
+  }
+}
+
+.a-home-feedback-button {
+  display: flex;
+  flex-direction: column; 
+  max-width: 6em;
+
+  svg {
+    font-size: 2em;
+    cursor: pointer;
+  }
 }
