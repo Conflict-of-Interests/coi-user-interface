@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Form from 'react-bootstrap/Form';
-import { FaPlusCircle } from "react-icons/fa";
+import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import {coiUserClient, coiFeedbackClient} from './axios-config.js';
 
 export default function AssociateHome(props) {
@@ -67,7 +67,7 @@ export default function AssociateHome(props) {
         <div class="a-home-feedback-button">
           <p>Give a Nudge</p>
           <div>
-            <FaPlusCircle onClick={() => giveNudge(true)}></FaPlusCircle>
+            <FaMinusCircle onClick={() => giveNudge(true)}></FaMinusCircle>
           </div>
         </div>
       </div>

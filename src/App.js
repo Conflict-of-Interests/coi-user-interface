@@ -21,8 +21,7 @@ function App() {
       <Router>
         <Switch>
 
-          <Route exact path="/">
-            <Login />
+          <Route exact path="/" component={Login}>
           </Route>
           <Route>
             <RevNav />
