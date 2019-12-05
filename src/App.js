@@ -41,9 +41,9 @@ function App() {
             </div>
             <Footer />
           </Route>
-          <ToastContainer autoClose={2000} position={toast.POSITION.BOTTOM_RIGHT}/>
         </Switch>
       </Router>
+      <ToastContainer autoClose={2000} position={toast.POSITION.BOTTOM_RIGHT} />
     </div>
   );
 }
