@@ -1,44 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { FaPlusCircle } from "react-icons/fa";
-import {coiUserClient, coiFeedbackClient} from './environment.js';
+import {coiUserClient, coiFeedbackClient} from './axios-config.js';
 
 export default function AssociateHome(props) {
-  const [peers, setPeers] = useState([
-    {
-      id: 1,
-      fname: 'Peer1A',
-      lname: 'Peer1B'
-    },
-    {
-      id: 2,
-      fname: 'Peer2A',
-      lname: 'Peer2B'
-    }
-  ]);
 
-  const [skills, setSkills] = useState([
-    {
-      id: 1,
-      name: 'TestSkill1'
-    },
-    {
-      id: 2,
-      name: 'TestSkill2'
-    }
-  ]);
+  const userSelectRef = useRef();
+  const [peers, setPeers] = useState([]);
+  const [skills, setSkills] = useState([]);
+
+  // const [selectedUser, setSelectedUser] = useState = ({});
+
+
+  let givePat = (e) => {
+    let peerId = document.getElementById('peer-select').value;
+    let skillId = document.getElementById('skill-select').value;
+    console.log(userSelectRef);
+    console.log(peerId);
+    // coiFeedbackClient.post('/feedback', {
+    //   associateId: peerId,
+    //   notes: null,
+    //
+    // });
+  }
 
   useEffect(() => {
     async function getPeers() {
       const data = await coiUserClient.get('/users');
-      setPeers(data);
+      console.log(data);
+      setPeers(data.data);
     }
     async function getSkills() {
       const data = await coiFeedbackClient.get('/skills');
-      const skillData = await data.json();
-      setSkills(skillData);
+      setSkills(data.data);
     }
     getPeers();
     getSkills();
@@ -46,42 +40,27 @@ export default function AssociateHome(props) {
 
   return (
     <div id="associate-home-container">
-      <div id="a-home-dashboard" class="btn btn-primary">
-        <Link class="unstyled-link" to="/associate-dashboard">My Performance Dashboard</Link>
-      </div>
       <div id="a-home-form-container">
         <span>Select a peer</span>
-        <Form.Group controlId="exampleForm.ControlSelect1">
+        <Form.Group controlId="peer-select">
           <Form.Control as="select">
             {peers.map(p => {
-              return <option key={p.id} value={p.id}>{p.fname}</option>
+              return <option key={p.id} value={p.id}>{p.firstName} {p.lastName}</option>
             })}
           </Form.Control>
         </Form.Group>
-        <span>Select a peer</span>
-        <Form.Group controlId="exampleForm.ControlSelect2">
+        <span>Select a skill</span>
+        <Form.Group controlId="skill-select" ref={userSelectRef}>
           <Form.Control as="select">
             {skills.map(s => {
               return <option key={s.id} value={s.id}>{s.name}</option>
             })}
           </Form.Control>
         </Form.Group>
-        {/* <Form.Group>
-        <Form.Check
-          type="radio"
-          id="pat-radio"
-          label="Pat on the back"
-        />
-        <Form.Check
-          type="radio"
-          id="nudge-radio"
-          label="Nudge"
-        />
-      </Form.Group> */}
         <div class="a-home-feedback-button">
           <p>Give Pat on the Back</p>
           <div>
-            <FaPlusCircle></FaPlusCircle>
+            <FaPlusCircle onClick={givePat}></FaPlusCircle>
           </div>
         </div>
         <div class="a-home-feedback-button">

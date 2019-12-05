@@ -3,13 +3,13 @@ import { environment } from './environment';
 
 let jwt = '';
 export const coiUserClient = axios.create({
-  baseURL: environment.coiContext,
+  baseURL: environment.coiUserContext,
   headers: {
     'Content-Type': 'application/json'
   }
 });
 export const coiFeedbackClient = axios.create({
-  baseURL: process.env.REACT_APP_USER_API_URL,
+  baseURL: environment.coiFeedbackContext,
   headers: {
     'Content-Type': 'application/json'
   }
