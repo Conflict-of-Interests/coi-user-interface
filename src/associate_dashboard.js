@@ -2,36 +2,48 @@ import React, { useState, useEffect } from 'react';
 import {FaPlusCircle,FaMinusCircle} from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
+import {Table} from 'react-bootstrap';
+import {coiFeedbackClient} from './axios-config.js';
 
 export default function AssociateDashboard(props) {
-  const [feedback, setFeedback] = useState([
-    {
-      id: 1,
-      name: "Communication",
-      pats: 3,
-      nudges: 1
-    },
-    {
-      id: 2,
-      name: "Teamwork",
-      pats: 2,
-      nudges: 4
-    }
-  ]);
+  const [feedback, setFeedback] = useState([]);
 
   useEffect(() => {
     const id = 1;
     async function getFeedback() {
-      const feedbackPromise = await fetch(`${process.env.REACT_APP_FEEDBACK_API_URL}/feedback/${id}`);
-      const feedbackData = await feedbackPromise.json();
-      setFeedback(feedbackData);
+      const data = await coiFeedbackClient.get(`/feedback/associates/${id}`);
+      const feedback = data.data;
+      let formattedFeedback = {};
+      feedback.forEach((ele) => {
+        if(!formattedFeedback[ele.skill.name]) {
+          formattedFeedback[ele.skill.name] = {
+            nudges: 0,
+            pats: 0
+          }
+        }
+        if(ele.nudge) {
+          formattedFeedback[ele.skill.name].nudges++;
+        } else {
+          formattedFeedback[ele.skill.name].pats++;
+        }
+      });
+      let actualFeedbackArray = [];
+      for (let key in formattedFeedback) {
+        actualFeedbackArray.push({
+          skill: key,
+          nudges: formattedFeedback[key].nudges,
+          pats: formattedFeedback[key].pats
+        })
+      }
+      setFeedback(actualFeedbackArray);
     }
-  })
+    getFeedback();
+  }, [])
 
   return (
     <div>
       <h2>Feedback I have Received</h2>
-      <table>
+      <Table striped border hover>
         <thead>
           <tr>
             <th>Skill</th>
@@ -40,17 +52,18 @@ export default function AssociateDashboard(props) {
           </tr>
         </thead>
         <tbody>
-          {feedback.map(skill => {
+          {feedback.map(f => {
+            const skills = f.skill;
             return (
-              <tr key={skill.id}>
-                <td>{skill.name}</td>
-                <td>{skill.pats}</td>
-                <td>{skill.nudges}</td>
+              <tr key={f.skill}>
+                <td>{f.skill}</td>
+                <td>{f.pats}</td>
+                <td>{f.nudges}</td>
               </tr>
             )
           })}
         </tbody>
-      </table>
+      </Table>
       <div>
         <Link to="/associate-home">
           <Button variant="primary">Back to Home</Button>

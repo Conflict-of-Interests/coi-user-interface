@@ -9,19 +9,20 @@ export default function AssociateHome(props) {
   const [peers, setPeers] = useState([]);
   const [skills, setSkills] = useState([]);
 
-  // const [selectedUser, setSelectedUser] = useState = ({});
 
-
-  let givePat = (e) => {
+  let giveNudge = (isNudge) => {
     let peerId = document.getElementById('peer-select').value;
     let skillId = document.getElementById('skill-select').value;
     console.log(userSelectRef);
     console.log(peerId);
-    // coiFeedbackClient.post('/feedback', {
-    //   associateId: peerId,
-    //   notes: null,
-    //
-    // });
+    coiFeedbackClient.post('/feedback', {
+      associateId: peerId,
+      notes: null,
+      nudge: isNudge,
+      skill: {
+        id: skillId
+      }
+    });
   }
 
   useEffect(() => {
@@ -60,13 +61,13 @@ export default function AssociateHome(props) {
         <div class="a-home-feedback-button">
           <p>Give Pat on the Back</p>
           <div>
-            <FaPlusCircle onClick={givePat}></FaPlusCircle>
+            <FaPlusCircle onClick={() => giveNudge(false)}></FaPlusCircle>
           </div>
         </div>
         <div class="a-home-feedback-button">
           <p>Give a Nudge</p>
           <div>
-            <FaPlusCircle></FaPlusCircle>
+            <FaPlusCircle onClick={() => giveNudge(true)}></FaPlusCircle>
           </div>
         </div>
       </div>
