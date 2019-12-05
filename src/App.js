@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Login from './login.js';
 import AssociateHome from './associate_home.js';
+import AssociateDashboard from './associate_dashboard.js';
 import RevNav from './navbar.js';
 import Footer from './footer.js';
 import logo from './logo.svg';
@@ -14,9 +15,9 @@ import './App.scss';
 function App() {
   const AssociatePage = (
     <>
-    <RevNav />
-    <AssociateHome />
-    <Footer />
+      <RevNav />
+      <AssociateHome />
+      <Footer />
     </>
   )
   return (
@@ -28,6 +29,8 @@ function App() {
           </Route>
           <Route path="/associate-home">
             {AssociatePage }
+          </Route>
+          <Route path="/associate-dashboard" component={AssociateDashboard}>
           </Route>
           <Route path="/trainer-home">
             {
