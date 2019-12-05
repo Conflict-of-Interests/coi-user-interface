@@ -6,6 +6,11 @@ import {coiUserClient} from './axios-config.js';
 import Form from 'react-bootstrap/Form';
 
 export default function Login(props) {
+  const [newAssociate, setNewAssociate] = useState({
+    firstName: '',
+    lastName: ''
+  });
+
   const [assocs, setAssocs] = useState([]);
 
   let loginFunc = (id) => {
@@ -22,13 +27,17 @@ export default function Login(props) {
     getAllAssociates();
   }, []);
 
-  let registerAssociate = (e) => {
-    let fname = document.getElementById('firstName').value;
-    let lname = document.getElementById('lastName').value;
-    coiUserClient.post('/users', {
-      firstName: fname,
-      lastName: lname
-    });
+  let registerAssociate = async (e) => {
+    e.preventDefault();
+    const data = await coiUserClient.post('/users', newAssociate);
+    loginFunc(data.data.id);
+  }
+  
+  function updateNewUser(e) {
+    setNewAssociate({
+      ...newAssociate,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
@@ -50,17 +59,25 @@ export default function Login(props) {
       <Button variant="primary">Login as Trainer</Button>
     </Link>
     <br />
-    <div>
-    <Form>
+    <div id="new-user-container">
+    <Form onSubmit={registerAssociate}>
       <Form.Group controlId="firstName">
         <Form.Label>First Name</Form.Label>
-        <Form.Control type="input" placeholder="Enter first name" />
+        <Form.Control type="input" 
+          name="firstName"
+          placeholder="Enter first name" 
+          onChange={updateNewUser}
+          value={newAssociate.firstName}/>
       </Form.Group>
       <Form.Group controlId="lastName">
         <Form.Label>Last Name</Form.Label>
-        <Form.Control type="input" placeholder="Enter last name" />
+        <Form.Control type="input" 
+          name="lastName"
+          placeholder="Enter last name" 
+          onChange={updateNewUser}
+          value={newAssociate.lastName}/>
       </Form.Group>
-      <Button variant="primary" type="submit" onClick={registerAssociate}>
+      <Button variant="primary" type="submit">
         Register
       </Button>
       </Form>
