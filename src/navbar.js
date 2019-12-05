@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from './logo.svg';
 import {Link} from 'react-router-dom';
 
 export default function RevNav(props) {
+
   return (
     <Navbar bg="light" expand="lg" id="app-nav">
       <Link to="/trainer-home">
@@ -13,6 +14,7 @@ export default function RevNav(props) {
           RevNauts LaunchPad
       </Navbar.Brand>
       </Link>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="/trainer-home">(Trainer) Home</Nav.Link>
