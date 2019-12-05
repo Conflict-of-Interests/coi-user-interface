@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {FaPlusCircle,FaMinusCircle} from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
+import {Link} from 'react-router-dom';
 
 export default function AssociateDashboard(props) {
   const [fakeSkills] = useState([
@@ -42,7 +43,9 @@ export default function AssociateDashboard(props) {
         </tbody>
       </table>
       <div>
-        <Button variant="primary">Back to Home</Button>
+        <Link to="/associate-home">
+          <Button variant="primary">Back to Home</Button>
+        </Link>
       </div>
     </div>
   );
