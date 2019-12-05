@@ -12,7 +12,9 @@ import BatchDashboard from './batch_dashboard.js';
 import RevNav from './navbar.js';
 import Footer from './footer.js';
 import logo from './logo.svg';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
 
@@ -41,6 +43,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <ToastContainer autoClose={2000} position={toast.POSITION.BOTTOM_RIGHT} />
     </div>
   );
 }

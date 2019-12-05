@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Form from 'react-bootstrap/Form';
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import {coiUserClient, coiFeedbackClient} from './axios-config.js';
+import { toast } from 'react-toastify';
 
 export default function AssociateHome(props) {
 
@@ -10,12 +11,12 @@ export default function AssociateHome(props) {
   const [skills, setSkills] = useState([]);
 
 
-  let giveNudge = (isNudge) => {
+  let giveNudge = async (isNudge) => {
     let peerId = document.getElementById('peer-select').value;
     let skillId = document.getElementById('skill-select').value;
     console.log(userSelectRef);
     console.log(peerId);
-    coiFeedbackClient.post('/feedback', {
+    await coiFeedbackClient.post('/feedback', {
       associateId: peerId,
       notes: null,
       nudge: isNudge,
@@ -23,6 +24,12 @@ export default function AssociateHome(props) {
         id: skillId
       }
     });
+    console.log('saved')
+    if(isNudge) {
+      toast.error('Nudge saved')
+    } else {
+      toast.success('Pat saved');
+    }
   }
 
   useEffect(() => {
@@ -58,13 +65,13 @@ export default function AssociateHome(props) {
             })}
           </Form.Control>
         </Form.Group>
-        <div class="a-home-feedback-button">
+        <div className="a-home-feedback-button">
           <p>Give Pat on the Back</p>
           <div>
             <FaPlusCircle onClick={() => giveNudge(false)}></FaPlusCircle>
           </div>
         </div>
-        <div class="a-home-feedback-button">
+        <div className="a-home-feedback-button">
           <p>Give a Nudge</p>
           <div>
             <FaMinusCircle onClick={() => giveNudge(true)}></FaMinusCircle>
