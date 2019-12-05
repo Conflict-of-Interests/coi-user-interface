@@ -13,16 +13,7 @@ import logo from './logo.svg';
 import './App.scss';
 
 function App() {
-<<<<<<< HEAD
-=======
-  const AssociatePage = (
-    <>
-      <RevNav />
-      <AssociateHome />
-      <Footer />
-    </>
-  )
->>>>>>> 490c0e3e325b673b3194a248c6714ba7e2e430c8
+
   return (
     <div className="App">
       <Router>
