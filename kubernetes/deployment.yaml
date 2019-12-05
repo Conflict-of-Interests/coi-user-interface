@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: user-interface
+  name: user-interface
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user-interface
+  template:
+    metadata:
+      labels:
+        app: user-interface
+    spec:
+      containers:
+      - image: gcr.io/conflict-of-interest-260814/user-interface:latest
+        name: user-interface
+        ports:
+        - containerPort: 80
