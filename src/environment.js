@@ -1,12 +1,14 @@
 const dev = {
-
-  coiContext:      "http://" + window.location.hostname + ':5500'
+  coiUserContext:      "http://" + window.location.hostname + ':2021',
+  coiFeedbackContext:  'http://' + window.location.hostname + ':2020'
 };
 const uat = {
-
+  coiUserContext:         '',
+  coiFeedbackContext:     ''
 };
 const prod = {
-  coiContext:         'http://OriginApiProd.yruxtjdgwg.us-east-1.elasticbeanstalk.com'
+  coiUserContext:     'http://35.225.252.246/',
+  coiFeedbackContext: 'http://35.193.218.142/'
 };
 console.log(process.env.NODE_ENV);
 export let environment = dev;
