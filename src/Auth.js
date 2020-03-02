@@ -9,16 +9,19 @@ export default function Auth(props) {
     lastName: '',
     role: ''
   }
+  // const cached = localStorage.getItem('user') || defaultUserState;
+  // console.debug('cached user:' + JSON.stringify(cached));
   let [user, setUser] = useState(defaultUserState);
   let history = useHistory();
 
   let authVal = {
     ...user,
-    initiateLogin: (user, cb) => {
+    initiateLogin: (userData, cb) => {
       setUser({
-        ...user,
+        ...userData,
         authenticated: true
       });
+      localStorage.setItem('user', JSON.stringify(user));
       if (user.role === 'trainer') {
         history.push('/trainer-home');
       } else if (user.role === 'associate') {
@@ -32,6 +35,7 @@ export default function Auth(props) {
     },
     logout: () => {
       setUser(defaultUserState);
+      localStorage.removeItem('user');
     }
   }
 
