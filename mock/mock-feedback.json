@@ -1,0 +1,60 @@
+{
+  "feedback": [
+    {
+      "id": 1,
+      "skill": {
+        "id": 1,
+        "name": "Communication",
+        "description": "How well you communicate",
+        "improvementTips": "Speak clearly"
+      },
+      "timeGiven": 100,
+      "notes": "Do better",
+      "isNudge": true
+    },
+    {
+      "id": 2,
+      "skill": {
+        "id": 2,
+        "name": "Leadership",
+        "description": "Ability to lead others",
+        "improvementTips": "Take responsibility"
+      },
+      "timeGiven": 10,
+      "notes": "Good job",
+      "isNudge": false
+    },
+    {
+      "associateId": "1",
+      "notes": null,
+      "nudge": false,
+      "skill": {
+        "id": "1"
+      },
+      "id": 3
+    },
+    {
+      "associateId": "1",
+      "notes": null,
+      "nudge": true,
+      "skill": {
+        "id": "1"
+      },
+      "id": 4
+    }
+  ],
+  "skills": [
+    {
+      "id": 1,
+      "name": "Communication",
+      "description": "How well you communicate",
+      "improvementTips": "Speak clearly"
+    },
+    {
+      "id": 2,
+      "name": "Leadership",
+      "description": "Ability to lead others",
+      "improvementTips": "Take responsibility"
+    }
+  ]
+}

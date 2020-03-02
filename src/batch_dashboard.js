@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 export default function BatchDashboard(props) {
-  const [associates, updateAssociates] = useState([
+  const [associates] = useState([
     {
       id: 1,
       fname: 'firstnameA',
@@ -20,6 +20,7 @@ export default function BatchDashboard(props) {
         <tbody>
           {
             // no idea how to implement yet
+            associates[0].id
           }
         </tbody>
       </table>

@@ -21,6 +21,8 @@
   "scripts": {
     "start": "react-scripts start",
     "start:prod": "cross-env REACT_APP_ENV=production npm start",
+    "mock-users": "json-server mock-users.json -p 2021",
+    "mock-feedback": "json-server mock-feedback.json -p 2020 --routes routes.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -39,5 +41,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

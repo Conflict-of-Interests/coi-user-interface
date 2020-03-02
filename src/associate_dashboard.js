@@ -3,7 +3,7 @@ import {FaPlusCircle,FaMinusCircle} from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
 import {Table} from 'react-bootstrap';
-import {coiFeedbackClient} from './axios-config.js';
+import {coiFeedbackClient} from './config/axios-config';
 
 export default function AssociateDashboard(props) {
   const [feedback, setFeedback] = useState([]);
@@ -11,8 +11,8 @@ export default function AssociateDashboard(props) {
   useEffect(() => {
     const id = localStorage.getItem('user');
     async function getFeedback() {
-      const data = await coiFeedbackClient.get(`/feedback/associates/${id}`);
-      const feedback = data.data;
+      const response = await coiFeedbackClient.get(`/feedback/associates/${id}`);
+      const feedback = response.data;
       let formattedFeedback = {};
       feedback.forEach((ele) => {
         if(!formattedFeedback[ele.skill.name]) {
@@ -53,7 +53,6 @@ export default function AssociateDashboard(props) {
         </thead>
         <tbody>
           {feedback.map(f => {
-            const skills = f.skill;
             return (
               <tr key={f.skill}>
                 <td>{f.skill}</td>

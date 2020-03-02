@@ -10,7 +10,6 @@ const prod = {
   coiUserContext:     'http://35.225.252.246/',
   coiFeedbackContext: 'http://35.193.218.142/'
 };
-console.log(process.env.NODE_ENV);
 export let environment = dev;
 if (process.env.REACT_APP_ENV === 'uat') {
   environment = uat;

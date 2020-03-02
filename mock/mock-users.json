@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Andrew",
+      "lastName": "Crenwelge",
+      "username": "andrewqc1",
+      "batchCode": null
+    },
+    {
+      "id": 2,
+      "firstName": "Peter",
+      "lastName": "Alagna",
+      "username": "techmgr",
+      "batchCode": "1901 Jan27 Java"
+    },
+    {
+      "firstName": "Nicole",
+      "lastName": "Crenwelge",
+      "id": 3
+    },
+    {
+      "firstName": "Test",
+      "lastName": "Test1",
+      "id": 4
+    },
+    {
+      "firstName": "Another",
+      "lastName": "Test",
+      "id": 5
+    }
+  ]
+}

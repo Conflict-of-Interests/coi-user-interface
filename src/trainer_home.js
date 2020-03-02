@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 export default function TrainerHome(props) {
-  const [fakeBatches, updateBatches] = useState([
+  const [fakeBatches] = useState([
     {
       id: 1,
       name: "Test Batch",
@@ -25,7 +25,7 @@ export default function TrainerHome(props) {
     <div>
       <h2>My Batches</h2>
       {fakeBatches.map(fakeBatch => {
-        return <Link to="/batch-dashboard">{fakeBatch.name}</Link>
+        return <Link key={fakeBatch.id} to="/batch-dashboard">{fakeBatch.name}</Link>
       })}
     </div>
   )

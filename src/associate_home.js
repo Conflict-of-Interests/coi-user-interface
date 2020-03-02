@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Form from 'react-bootstrap/Form';
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
-import {coiUserClient, coiFeedbackClient} from './axios-config.js';
+import {coiUserClient, coiFeedbackClient} from './config/axios-config';
 import { toast } from 'react-toastify';
 
 export default function AssociateHome(props) {
@@ -10,12 +10,9 @@ export default function AssociateHome(props) {
   const [peers, setPeers] = useState([]);
   const [skills, setSkills] = useState([]);
 
-
   let giveNudge = async (isNudge) => {
     let peerId = document.getElementById('peer-select').value;
     let skillId = document.getElementById('skill-select').value;
-    console.log(userSelectRef);
-    console.log(peerId);
     await coiFeedbackClient.post('/feedback', {
       associateId: peerId,
       notes: null,
@@ -24,7 +21,6 @@ export default function AssociateHome(props) {
         id: skillId
       }
     });
-    console.log('saved')
     if(isNudge) {
       toast.error('Nudge saved')
     } else {
@@ -34,13 +30,13 @@ export default function AssociateHome(props) {
 
   useEffect(() => {
     async function getPeers() {
-      const data = await coiUserClient.get('/users');
-      console.log(data);
-      setPeers(data.data);
+      const response = await coiUserClient.get('/users');
+      const userId = localStorage.getItem('user');
+      setPeers(response.data.filter(peer => Number(peer.id) !== Number(userId)));
     }
     async function getSkills() {
-      const data = await coiFeedbackClient.get('/skills');
-      setSkills(data.data);
+      const response = await coiFeedbackClient.get('/skills');
+      setSkills(response.data);
     }
     getPeers();
     getSkills();
