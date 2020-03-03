@@ -17,6 +17,7 @@ import Footer from './footer';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import { ToastContainer, toast } from 'react-toastify';
+import NotFound from './NotFound';
 
 class DebugRouter extends Router {
   constructor(props){
@@ -56,6 +57,7 @@ function App() {
                         </Route>
                         <Route path="/batch-dashboard" component={BatchDashboard}>
                         </Route>
+                        <Route path="*" component={NotFound}></Route>
                       </Switch>
                     )
                   }
@@ -63,6 +65,7 @@ function App() {
               </div>
               <Footer />
             </Route>
+            <Route path="*" component={NotFound}></Route>
           </Switch>
         </Auth>
       </DynamicRouter>

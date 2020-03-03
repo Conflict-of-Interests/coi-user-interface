@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {FaPlusCircle,FaMinusCircle} from 'react-icons/fa';
 import Button from 'react-bootstrap/Button';
 import {Link} from 'react-router-dom';
 import {Table} from 'react-bootstrap';
 import {coiFeedbackClient} from './config/axios-config';
+import AuthContext from './AuthContext';
 
 export default function AssociateDashboard(props) {
   const [feedback, setFeedback] = useState([]);
+  const authUser = useContext(AuthContext);
 
   useEffect(() => {
-    const id = localStorage.getItem('user');
+    const id = authUser.id;
     async function getFeedback() {
       const response = await coiFeedbackClient.get(`/feedback/associates/${id}`);
       const feedback = response.data;
@@ -38,7 +40,7 @@ export default function AssociateDashboard(props) {
       setFeedback(actualFeedbackArray);
     }
     getFeedback();
-  }, [])
+  }, [authUser]);
 
   return (
     <div>

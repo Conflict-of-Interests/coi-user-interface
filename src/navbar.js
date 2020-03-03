@@ -18,53 +18,51 @@ export default function RevNav(props) {
                 RevNauts LaunchPad
               </Navbar.Brand>
             </Link>
-            <span class="mr-3">
+            <span className="ml-3">
               {`Welcome, ${auth.firstName} ${auth.lastName}`}
             </span>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
+            <Navbar.Collapse id="navbar-links" className="justify-content-end">
+              <Nav>
                 <Can
                   role={auth.role}
                   perform="trainer_home:view"
                   yes={() => (
-                    <Nav.Link>
-                      <Link to="/trainer-home">Home</Link>
-                    </Nav.Link>
+                    <Nav.Item>
+                      <Nav.Link to="/trainer-home" as={Link}>Home</Nav.Link>
+                    </Nav.Item>
                   )}
                 />
                 <Can
                   role={auth.role}
                   perform="batch_dashboard:view"
                   yes={() => (
-                    <Nav.Link>
-                      <Link to="/batch-dashboard">Batch Dashboard</Link>
-                    </Nav.Link>
+                    <Nav.Item>
+                      <Nav.Link to="/batch-dashboard" as={Link}>Batch Dashboard</Nav.Link>
+                    </Nav.Item>
                   )}
                 />
                 <Can
                   role={auth.role}
                   perform="associate_home:view"
                   yes={() => (
-                    <Nav.Link>
-                      <Link to="/associate-home">Home</Link>
-                    </Nav.Link>
+                    <Nav.Item>
+                      <Nav.Link to="/associate-home" as={Link}>Home</Nav.Link>
+                    </Nav.Item>
                   )}
                 />
                 <Can
                   role={auth.role}
                   perform="associate_dashboard:view"
                   yes={() => (
-                    <Nav.Link>
-                      <Link to="/associate-dashboard">Dashboard</Link>
-                    </Nav.Link>
+                    <Nav.Item>
+                      <Nav.Link to="/associate-dashboard" as={Link}>Dashboard</Nav.Link>
+                    </Nav.Item>
                   )}
                 />
-                <Nav.Link>
-                  <Link to="/">
-                    <span onClick={auth.logout}>Logout</span>
-                  </Link>
-                </Nav.Link>
+                <Nav.Item>
+                  <Nav.Link to="/" as={Link} onClick={auth.logout}>Logout</Nav.Link>
+                </Nav.Item>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

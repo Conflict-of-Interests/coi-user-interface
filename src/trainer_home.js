@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {ListGroup} from 'react-bootstrap';
 
 export default function TrainerHome(props) {
   const [fakeBatches] = useState([
     {
       id: 1,
-      name: "Test Batch",
+      name: "Test Batch 1",
       associates: [
         {
           id: 1,
@@ -18,15 +19,35 @@ export default function TrainerHome(props) {
           lname: 'lastnameB'
         }
       ]
+    },
+    {
+      id: 2,
+      name: "Test Batch 2",
+      associates: [
+        {
+          id: 3,
+          fname: 'firstnameC',
+          lname: 'lastnameC'
+        },
+        {
+          id: 4,
+          fname: 'firstnameD',
+          lname: 'lastnameD'
+        }
+      ]
     }
   ]);
 
   return (
     <div>
       <h2>My Batches</h2>
-      {fakeBatches.map(fakeBatch => {
-        return <Link key={fakeBatch.id} to="/batch-dashboard">{fakeBatch.name}</Link>
-      })}
+      <ListGroup>
+        {fakeBatches.map(fakeBatch => {
+          return (<ListGroup.Item key={fakeBatch.id}>
+            <Link to="/batch-dashboard">{fakeBatch.name}</Link>
+          </ListGroup.Item>)
+        })}
+      </ListGroup>
     </div>
   )
 }

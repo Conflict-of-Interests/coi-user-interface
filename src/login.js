@@ -64,6 +64,7 @@ export default function Login(props) {
               {
                 assocs.map((assoc)=> {
                   let user = {...assoc, role: 'associate'};
+                  console.debug(JSON.stringify(user));
                   return (
                     <Dropdown.Item
                       key={assoc.id}

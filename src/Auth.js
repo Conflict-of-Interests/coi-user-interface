@@ -9,24 +9,29 @@ export default function Auth(props) {
     lastName: '',
     role: ''
   }
-  // const cached = localStorage.getItem('user') || defaultUserState;
-  // console.debug('cached user:' + JSON.stringify(cached));
+  const cached = localStorage.getItem('user') || defaultUserState;
+  console.debug('cached user:' + JSON.stringify(cached));
   let [user, setUser] = useState(defaultUserState);
   let history = useHistory();
 
   let authVal = {
     ...user,
-    initiateLogin: (userData, cb) => {
-      setUser({
+    initiateLogin: (userData) => {
+      console.debug(`received role ${userData.role} from login`);
+      const newUserState = {
         ...userData,
         authenticated: true
-      });
-      localStorage.setItem('user', JSON.stringify(user));
-      if (user.role === 'trainer') {
+      };
+      setUser(newUserState);
+      localStorage.setItem('user', JSON.stringify(newUserState));
+      if (newUserState.role === 'trainer') {
+        console.debug('rerouting to trainer home');
         history.push('/trainer-home');
-      } else if (user.role === 'associate') {
+      } else if (newUserState.role === 'associate') {
+        console.debug('rerouting to associate home');
         history.push("/associate-home");
       } else {
+        console.debug('rerouting to /');
         history.push("/");
       }
     },
